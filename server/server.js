@@ -3,6 +3,8 @@ const KoaRouter = require('koa-router');
 const json = require('koa-json');
 const bodyParser = require('koa-bodyparser');
 const logger = require('koa-logger');
+const static = require('koa-static');
+const send = require('koa-send');
 
 
 //Intialize app.  
@@ -17,26 +19,45 @@ app.use(logger());
 app.use(json());
 // Body Parser Middleware
 app.use(bodyParser());
+// Static middlware
+
+app.use(static('./public'));
+// Router Middleware
+app.use(router.routes()).use(router.allowedMethods());
+
+// app.use(async (ctx) => {
+//   await send(ctx, ctx.path, { root: __dirname + '/public/index.html ' });
+// }) 
+
+// 
+app.use(async (ctx, next) => {
+  try {
+    ctx.body = 'Hello World!'
+    await next();
+  } catch (error) {
+    console.log('Passing error to error middlware...')
+    next(error)
+  }
+});
+
+
+
+
+
 
 
 // Error Middleware
-app.use(async (next) => { 
+app.use(async (next, ctx) => { 
   try {
     console.log('here');
     await next()
-    console.log('here again ')
-  } catch (error) {
-    console.log(err.status)
+  } catch (err) {
+    console.log('Recieving error...')
+    console.log(err.status)    
     ctx.status = err.status || 500;
     ctx.body = err.message;
   }
 })
-
-// 
-app.use((ctx, next) => ctx.body = "Hello World" )
-
-// Router Middleware
-app.use(router.routes()).use(router.allowedMethods());
 
 // Start the app..
 app.listen(PORT, () => console.log(`Server is listening on PORT: ${PORT}`));
