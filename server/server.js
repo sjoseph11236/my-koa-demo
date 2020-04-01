@@ -5,13 +5,15 @@ const logger = require('koa-logger');
 const static = require('koa-static');
 const send = require('koa-send');
 
+
 //Sub-routes folder 
 const apiRouter = require('./api');
 const authRouter = require('./auth');
 //Intialize app.  
 const app =  new Koa();
-// const router = new KoaRouter();
 
+
+const { db } = require('./db');
 const PORT = 3000; 
 
 // Logger Middleware
@@ -58,5 +60,11 @@ app.use(async (next, ctx) => {
   }
 })
 
-// Start the app..
-app.listen(PORT, () => console.log(`Server is listening on PORT: ${PORT}`));
+// // Start the app..
+// app.listen(PORT, () => console.log(`Server is listening on PORT: ${PORT}`));
+
+db.sync({force: true})
+  .then(() => {
+    console.log('db synced');
+    app.listen(PORT, () => console.log(`Server is listening on PORT: ${PORT}`));
+  });
