@@ -3,18 +3,53 @@ const json = require('koa-json');
 const bodyParser = require('koa-bodyparser');
 const logger = require('koa-logger');
 const static = require('koa-static');
-const send = require('koa-send');
+// const send = require('koa-send');
+const passport = require('koa-passport');
+const session = require('koa-generic-session')
+const { db } = require('./db/');
+const User = require('./db/models/User');
+const SequelizeStore = require('koa-generic-session-sequelize');
+const dbStore = new SequelizeStore({ db });
 
+dbStore.sync();
 
-//Sub-routes folder 
-const apiRouter = require('./api');
-const authRouter = require('./auth');
 //Intialize app.  
 const app =  new Koa();
-
-
-const { db } = require('./db');
 const PORT = 3000; 
+
+
+//Sub-route folders
+const apiRouter = require('./api');
+const authRouter = require('./auth');
+
+passport.serializeUser((user, done) => {
+  try {
+    done(null, user.id);
+  } catch (error) {
+    done(error);
+  }
+});
+
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findByPk(id);
+    done(null, user);
+  } catch (err) {
+    done(err);
+  }
+});
+
+// sessions
+app.keys = [ process.env.SESSION_SECRET || 'a wildly insecure secret' ];
+app.use(session({
+  store: dbStore, 
+}));
+
+
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 // Logger Middleware
 app.use(logger());
