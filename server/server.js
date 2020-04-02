@@ -8,10 +8,10 @@ const passport = require('koa-passport');
 const session = require('koa-generic-session')
 const { db } = require('./db/');
 const User = require('./db/models/User');
-const SequelizeStore = require('koa-generic-session-sequelize');
-const dbStore = new SequelizeStore({ db });
+// const SequelizeStore = require('koa-generic-session-sequelize');
+// const dbStore = new SequelizeStore({ db });
 
-dbStore.sync();
+// dbStore.sync();
 
 //Intialize app.  
 const app =  new Koa();
@@ -39,11 +39,11 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-// sessions
-app.keys = [ process.env.SESSION_SECRET || 'a wildly insecure secret' ];
-app.use(session({
-  store: dbStore, 
-}));
+// // sessions
+// app.keys = [ process.env.SESSION_SECRET || 'a wildly insecure secret' ];
+// app.use(session({
+//   store: dbStore, 
+// }));
 
 
 
