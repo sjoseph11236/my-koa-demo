@@ -1,7 +1,7 @@
 const { User } = require('../db/');
 const Router = require('koa-router');
 const router = new Router({
-  prefix: '/api'
+  prefix: '/api/users'
 });
 
 router.get('/', async (ctx, next )=> { 
