@@ -1,11 +1,14 @@
-
+const { db } = require('./db/');
 
 //Intialize app.  
 
 
 
+
 //Sub-route folders
 
+// // Express example
+// app.use('/api', require('./api'))
 
 // Logger Middleware
 
@@ -18,15 +21,15 @@
 // // Router Middleware
 
 
-// // Cascading example
-
 
 
 // // Starter hello world
-
+// // Cascading example
 
 
 // // EXPRESS Cascading example
+
+
 
 
 
@@ -35,8 +38,15 @@
 
 
 // Error Middleware
+// Express Middleware
+// app.use((error,req, res, next) => { 
 
-// // Start the app..
+// })
+
+
+
+
+// // // Start the app..
 
 
 // db.sync({force: false})
