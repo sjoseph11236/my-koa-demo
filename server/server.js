@@ -26,28 +26,20 @@ app.use(bodyParser());
 app.use(apiRouter.routes()).use(apiRouter.allowedMethods());
 app.use(authRouter.routes()).use(apiRouter.allowedMethods());
 
+
+
+
+// // Starter hello world
 // // Cascading example
 // app.use(async (ctx, next) => {
 //   console.log('here')
 //   await next();
 //   console.log('finally')
 // })
+
 // app.use(async (ctx, next) => { 
 //   console.log('here too');
-//   await next();
 //   ctx.body = ('Hello World');
-// });
-
-
-// // Starter hello world
-// app.use(async (ctx, next) => {
-//   try {
-//     ctx.body = 'Hello World!'
-//     await next();
-//   } catch (error) {
-//     console.log('Passing error to error middlware...')
-//     next(error)
-//   }
 // });
 
 
@@ -57,6 +49,7 @@ app.use(authRouter.routes()).use(apiRouter.allowedMethods());
 //   await next();
 //   console.log('finally')
 // })
+
 // app.use(async (req, res, next) => { 
 //   console.log('here too');
 //   await next();
