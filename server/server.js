@@ -26,9 +26,6 @@ app.use(bodyParser());
 app.use(apiRouter.routes()).use(apiRouter.allowedMethods());
 app.use(authRouter.routes()).use(apiRouter.allowedMethods());
 
-
-
-
 // // Starter hello world
 // // Cascading example
 // app.use(async (ctx, next) => {
@@ -41,21 +38,6 @@ app.use(authRouter.routes()).use(apiRouter.allowedMethods());
 //   console.log('here too');
 //   ctx.body = ('Hello World');
 // });
-
-
-// // EXPRESS Cascading example
-// app.use(async (req, res, next) => {
-//   console.log('here')
-//   await next();
-//   console.log('finally')
-// })
-
-// app.use(async (req, res, next) => { 
-//   console.log('here too');
-//   await next();
-//   res.send('Hello World');
-// });
-
 
 // Static middlware
 app.use(static('./public'));
