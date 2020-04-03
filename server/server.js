@@ -40,7 +40,8 @@
 // Error Middleware
 // Express Middleware
 // app.use((error,req, res, next) => { 
-
+  // console.error(err.stack)
+  // res.status(500).send('Something broke!')
 // })
 
 
