@@ -12,7 +12,7 @@ const PORT = 3000;
 
 //Sub-route folders
 const apiRouter = require('./api');
-const authRouter = require('./auth');
+
 
 // Logger Middleware
 app.use(logger());
@@ -23,8 +23,8 @@ app.use(bodyParser());
 
 
 // // Router Middleware
-app.use(apiRouter.routes()).use(apiRouter.allowedMethods());
-app.use(authRouter.routes()).use(apiRouter.allowedMethods());
+app.use(apiRouter.routes())
+
 
 // // Starter hello world
 // // Cascading example
