@@ -1,5 +1,3 @@
-// const { db } = require('./db/');
-
 //Intialize app. 
 
 
@@ -7,8 +5,10 @@
 
 //Sub-route folders
 
-// // Express example
+
+// // Express Sub-route example
 // app.use('/api', require('./api'))
+
 
 // Logger Middleware
 
@@ -16,31 +16,36 @@
 
 // Body Parser Middleware
 
-
-
 // // Router Middleware
 
 
 
-// // Starter hello world
-// // Cascading example
+
+// // Starter hello world 
+
+// *** Cascading example ***
 
 
-
+// Express Middleware
+// app.use(( req, res, next) => { 
+//   res.send("Hello")
+// })
 
 
 
 
 // Static middlware
 
+
 // Express Static Middlleware
 // app.use(express.static('public'))
 
 // Error Middleware
-// Express Middleware
+
+// Express Error Middleware
 // app.use((error,req, res, next) => { 
-  // console.error(err.stack)
-  // res.status(500).send('Something broke!')
+//   console.error(err.stack)
+//   res.status(500).send('Something broke!')
 // })
 
 
@@ -48,10 +53,3 @@
 
 
 // // // Start the app..
-
-
-// db.sync({force: false})
-//   .then(() => {
-//     console.log('db synced');
-//     app.listen(PORT, () => console.log(`Server is listening on PORT: ${PORT}`));
-//   });
