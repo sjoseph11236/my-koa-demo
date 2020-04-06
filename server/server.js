@@ -1,6 +1,6 @@
 // const { db } = require('./db/');
 
-//Intialize app.  
+//Intialize app. 
 
 
 
@@ -22,7 +22,6 @@
 
 
 
-
 // // Starter hello world
 // // Cascading example
 
@@ -32,10 +31,10 @@
 
 
 
-
 // Static middlware
 
-
+// Express Static Middlleware
+// app.use(express.static('public'))
 
 // Error Middleware
 // Express Middleware
@@ -43,6 +42,7 @@
   // console.error(err.stack)
   // res.status(500).send('Something broke!')
 // })
+
 
 
 
