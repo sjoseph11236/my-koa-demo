@@ -1,5 +1,3 @@
-
-
 router.param('id', async(id, ctx, next) => {
   console.log('here')
   ctx.state.user = await User.findByPk(id);
