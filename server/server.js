@@ -1,21 +1,22 @@
+
 const Koa = require('koa');
 const json = require('koa-json');
 const bodyParser = require('koa-bodyparser');
 const logger = require('koa-logger');
 const static = require('koa-static');
 
-//Intialize app.  
-const app =  new Koa();
-const PORT = 3000; 
+//Intialize app. 
+
 
 
 //Sub-route folders
+
 const apiRouter = require('./api');
 
-
 // Logger Middleware
-app.use(logger());
+
 // JSON Prettier Middleware
+<<<<<<< HEAD
 app.use(json());
 // Body Parser Middleware
 app.use(bodyParser());
@@ -27,6 +28,8 @@ app.use(static('./public'));
 // app.use(express.static('public'))
 
 
+=======
+>>>>>>> 72ce8238c93a0e07c5d1ca9bfc9bda56f8371a00
 
 
 
@@ -34,8 +37,25 @@ app.use(static('./public'));
 app.use(apiRouter.routes())
 
 
+<<<<<<< HEAD
 // // Starter hello world
 // Cascading example
+=======
+
+
+
+// Body Parser Middleware
+
+// // Router Middleware
+
+
+
+
+// // Starter hello world 
+
+// *** Cascading example ***
+
+>>>>>>> 72ce8238c93a0e07c5d1ca9bfc9bda56f8371a00
 // app.use(async (ctx, next) => {
 //   console.log('here')
 //   await next();
@@ -47,10 +67,10 @@ app.use(apiRouter.routes())
 //   ctx.body = ('Hello World');
 // });
 
-
 // Express Middleware
 // app.use(( req, res, next) => { 
 //   res.send("Hello")
+
 // })
 
 
@@ -75,11 +95,27 @@ app.use(async (next, ctx) => {
 // })
 
 
+<<<<<<< HEAD
+=======
+
+// Static middlware
+
+>>>>>>> 72ce8238c93a0e07c5d1ca9bfc9bda56f8371a00
+
+
+
+
+// Error Middleware
+
+// Express Error Middleware
+// app.use((error,req, res, next) => { 
+//   console.error(err.stack)
+//   res.status(500).send('Something broke!')
+// })
 
 
 
 
 
-// // Start the app..
-app.listen(PORT, () => console.log(`Server is listening on PORT: ${PORT}`));
+// // // Start the app..
 
