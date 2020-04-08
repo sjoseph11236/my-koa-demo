@@ -14,12 +14,33 @@ const apiRouter = require('./api');
 
 // Logger Middleware
 app.use(logger());
+
+app.use(async(ctx, next) =>  { 
+  let start = new Date();
+  await next();
+  let end  = new Date();
+  console.log('TOTAL RESPONSE TIME', end - start);
+  console.log('Message of State', ctx.state.message);
+});
+
+
+app.use(async (ctx, next) => { 
+  ctx.state.message = await message();
+  ctx.body = ctx.state.message;
+})
+
+const message = () => {
+  return 'Hello World';
+}
+
+
+
 // JSON Prettier Middleware
 app.use(json());
 // Body Parser Middleware
 app.use(bodyParser());
 // // Static middlware
-app.use(static('./public'));
+// app.use(static('./public'));
 
 
 // Express Static Middlleware
@@ -45,7 +66,6 @@ app.use(apiRouter.routes())
 // Express Middleware
 // app.use(( req, res, next) => { 
 //   res.send("Hello")
-
 // })
 
 
