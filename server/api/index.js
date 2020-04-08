@@ -39,8 +39,8 @@ router.put('/:id', async (ctx, next) => {
     const user = await User.update(body, { where:{ id }});
     ctx.body = user;
 
-    
-    // console.log("STATE", ctx.state.user)
+
+    console.log("STATE", ctx.state.user)
 
     // const user = ctx.state.user;
     // const body = ctx.request.body;
