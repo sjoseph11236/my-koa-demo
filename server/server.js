@@ -51,17 +51,14 @@ app.use(apiRouter.routes())
 
 
 // Error Middleware
-app.use(async (next, ctx) => { 
+app.use(async (ctx, next) => {
   try {
-    console.log('here at Error Middleware');
-    await next()
+    console.log('here')
+    await next();
   } catch (err) {
-    console.log('Recieving error...')
-    console.log(err.status)    
-    ctx.status = err.status || 500;
-    ctx.body = err.message;
+    ctx.throw(err.status || 500, err.message || 'Internal Server Error');
   }
-})
+});
 
 
 // Express Error Middleware
