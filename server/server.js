@@ -19,19 +19,15 @@ app.use(logger());
 app.use(json());
 // Body Parser Middleware
 app.use(bodyParser());
+// // Static middlware
+app.use(static('./public'));
 
-// Error Middleware
-app.use(async (next, ctx) => { 
-  try {
-    console.log('here at Error Middleware');
-    await next()
-  } catch (err) {
-    console.log('Recieving error...')
-    console.log(err.status)    
-    ctx.status = err.status || 500;
-    ctx.body = err.message;
-  }
-})
+
+// Express Static Middlleware
+// app.use(express.static('public'))
+
+
+
 
 
 // // Router Middleware
@@ -39,7 +35,7 @@ app.use(apiRouter.routes())
 
 
 // // Starter hello world
-// // Cascading example
+// Cascading example
 // app.use(async (ctx, next) => {
 //   console.log('here')
 //   await next();
@@ -58,6 +54,20 @@ app.use(apiRouter.routes())
 // })
 
 
+
+// Error Middleware
+app.use(async (next, ctx) => { 
+  try {
+    console.log('here at Error Middleware');
+    await next()
+  } catch (err) {
+    console.log('Recieving error...')
+    console.log(err.status)    
+    ctx.status = err.status || 500;
+    ctx.body = err.message;
+  }
+})
+
 // Express Error Middleware
 // app.use((error,req, res, next) => { 
 //   console.error(err.stack)
@@ -65,12 +75,7 @@ app.use(apiRouter.routes())
 // })
 
 
-// Static middlware
-app.use(static('./public'));
 
-
-// Express Static Middlleware
-// app.use(express.static('public'))
 
 
 
