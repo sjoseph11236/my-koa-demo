@@ -3,7 +3,6 @@ const json = require('koa-json');
 const bodyParser = require('koa-bodyparser');
 const logger = require('koa-logger');
 const static = require('koa-static');
-const { db } = require('./db/');
 
 //Intialize app.  
 const app =  new Koa();
@@ -20,6 +19,19 @@ app.use(logger());
 app.use(json());
 // Body Parser Middleware
 app.use(bodyParser());
+
+// Error Middleware
+app.use(async (next, ctx) => { 
+  try {
+    console.log('here at Error Middleware');
+    await next()
+  } catch (err) {
+    console.log('Recieving error...')
+    console.log(err.status)    
+    ctx.status = err.status || 500;
+    ctx.body = err.message;
+  }
+})
 
 
 // // Router Middleware
@@ -39,29 +51,30 @@ app.use(apiRouter.routes())
 //   ctx.body = ('Hello World');
 // });
 
+
+// Express Middleware
+// app.use(( req, res, next) => { 
+//   res.send("Hello")
+// })
+
+
+// Express Error Middleware
+// app.use((error,req, res, next) => { 
+//   console.error(err.stack)
+//   res.status(500).send('Something broke!')
+// })
+
+
 // Static middlware
 app.use(static('./public'));
 
 
+// Express Static Middlleware
+// app.use(express.static('public'))
 
-// Error Middleware
-app.use(async (next, ctx) => { 
-  try {
-    console.log('here');
-    await next()
-  } catch (err) {
-    console.log('Recieving error...')
-    console.log(err.status)    
-    ctx.status = err.status || 500;
-    ctx.body = err.message;
-  }
-})
+
+
 
 // // Start the app..
-// app.listen(PORT, () => console.log(`Server is listening on PORT: ${PORT}`));
+app.listen(PORT, () => console.log(`Server is listening on PORT: ${PORT}`));
 
-db.sync({force: false})
-  .then(() => {
-    console.log('db synced');
-    app.listen(PORT, () => console.log(`Server is listening on PORT: ${PORT}`));
-  });
