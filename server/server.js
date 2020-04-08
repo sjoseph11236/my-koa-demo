@@ -25,9 +25,6 @@ app.use(static('./public'));
 // Express Static Middlleware
 // app.use(express.static('public'))
 
-
-
-
 // // Router Middleware
 app.use(apiRouter.routes())
 
