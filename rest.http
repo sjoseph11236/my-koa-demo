@@ -1,7 +1,18 @@
-POST http://localhost:3000/api/users
-Content-Type: application/json
+GET http://localhost:3000/api/users
 
-{
-  "name": "Joshua",
-  "email": "Joshua@email.com"
-}
+
+# POST http://localhost:3000/api/users
+# Content-Type: application/json
+
+# {
+#   "name": "Joshua",
+#   "email": "Joshua@email.com"
+# }
+
+# PUT http://localhost:3000/api/users/3
+# Content-Type: application/json
+
+# {
+#   "name": "Josh",
+#   "email": "Joshua@email.com"
+# }
