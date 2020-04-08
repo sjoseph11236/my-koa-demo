@@ -1,5 +1,13 @@
 # Koa.js Demo:
 
+## Set-up:
+- Open terminal 
+- Fork and clone the repo.
+```
+  npm install
+  createdb koa_demo
+  npm run seed
+```
 
 ### Resources:
   - [Koa documentation](https://koajs.com/)
