@@ -32,7 +32,6 @@ app.use(static('./public'));
 app.use(apiRouter.routes())
 
 // // Starter hello world 
-
 // *** Cascading example ***
 
 // app.use(async (ctx, next) => {
@@ -73,10 +72,6 @@ app.use(async (next, ctx) => {
 //   console.error(err.stack)
 //   res.status(500).send('Something broke!')
 // })
-
-
-
-
 
 // // // Start the app..
 app.listen(PORT, ()=> console.log(`Server is listening on PORT ${PORT}`));
