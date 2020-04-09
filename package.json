@@ -7,17 +7,9 @@
     "start": "nodemon server/server.js",
     "seed": "node ./bin/seed.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sjoseph11236/my-koa-boiler-plate.git"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/sjoseph11236/my-koa-boiler-plate/issues"
-  },
-  "homepage": "https://github.com/sjoseph11236/my-koa-boiler-plate#readme",
   "dependencies": {
     "chalk": "^3.0.0",
     "koa": "^2.11.0",
