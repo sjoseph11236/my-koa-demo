@@ -14,7 +14,7 @@ const apiRouter = require('./api');
 // Logger Middleware
 app.use(logger());
 
-// Custom Logger Middleware
+// // Custom Logger Middleware
 // app.use(async(ctx, next) =>  { 
 //   let start = new Date();
 //   await next();
@@ -40,12 +40,12 @@ app.use(async (ctx, next) => {
 
 
 // app.use(async (ctx, next) => { 
-//   ctx.state.message =  message();
+//   ctx.state.message = await message();
 //   ctx.body = ctx.state.message;
 //   next();
 // })
 
-// const message = () => {
+// const message = async () => {
 //   return 'Hello World';
 // }
 
