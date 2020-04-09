@@ -30,9 +30,10 @@ app.use(bodyParser());
 // Error Middleware
 app.use(async (ctx, next) => {
   try {
-    console.log('here')
+    console.log('here at Error handler')
     await next();
   } catch (err) {
+    console.log('Recieved error...')
     ctx.throw(err.status || 500, err.message || 'Internal Server Error');
   }
 });
