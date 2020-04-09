@@ -1,4 +1,4 @@
-GET http://localhost:3000/api/users
+# GET http://localhost:3000/api/users
 
 
 # POST http://localhost:3000/api/users
@@ -24,3 +24,5 @@ GET http://localhost:3000/api/users
 #   "name": "Josh",
 #   "email": "Joshua@email.com"
 # }
+
+DELETE http://localhost:3000/api/users/3
