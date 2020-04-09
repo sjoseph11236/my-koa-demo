@@ -14,14 +14,14 @@ const apiRouter = require('./api');
 // Logger Middleware
 app.use(logger());
 
-// // Custom Logger Middleware
-// app.use(async(ctx, next) =>  { 
-//   let start = new Date();
-//   await next();
-//   let end  = new Date();
-//   console.log('TOTAL RESPONSE TIME', end - start);
-//   console.log('Message of State', ctx.state.message);
-// });
+// Custom Logger Middleware
+app.use(async(ctx, next) =>  { 
+  let start = new Date();
+  await next();
+  let end  = new Date();
+  console.log('TOTAL RESPONSE TIME', end - start);
+  console.log('Message of State', ctx.state.message);
+});
 
 
 // Body Parser Middleware
