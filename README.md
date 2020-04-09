@@ -3,10 +3,13 @@
 ## Set-up:
 - Open terminal 
 - Fork and clone the repo.
+- Run these commands: 
+
 ```
   npm install
   createdb koa_demo
   npm run seed
+  npm start
 ```
 
 ### Resources:
