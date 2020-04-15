@@ -7,47 +7,55 @@ const static = require('koa-static');
 const app = new Koa();
 const PORT = 3000; 
 
-
-//Sub-route folders
-const apiRouter = require('./api');
-
 // Logger Middleware
 app.use(logger());
-
-// Custom Logger Middleware
-app.use(async(ctx, next) =>  { 
-  let start = new Date();
-  await next();
-  let end  = new Date();
-  console.log('TOTAL RESPONSE TIME', end - start);
-  console.log('Message of State', ctx.state.message);
-});
-
-
-// Body Parser Middleware
-app.use(bodyParser());
 
 // Error Middleware
 app.use(async (ctx, next) => {
   try {
-    console.log('here at Error handler')
+    console.log('here at Error handler');
     await next();
+    console.log('Line 15 ----> Back Here');
   } catch (err) {
     console.log('Recieved error...')
     ctx.throw(err.status || 500, err.message || 'Internal Server Error');
   }
 });
 
+//Sub-route folders
+const apiRouter = require('./api');
 
-// app.use(async (ctx, next) => { 
-//   ctx.state.message = await message();
-//   ctx.body = ctx.state.message;
-//   next();
-// })
 
-// const message = async () => {
-//   return 'Hello World';
-// }
+
+// Custom Logger Middleware
+app.use(async(ctx, next) =>  { 
+  let start = new Date();
+  console.log('Going to next function..')
+  await next();
+  console.log('continuing on in this function')
+  let end  = new Date();
+  console.log('Line 22 ---> TOTAL RESPONSE TIME', end - start);
+  console.log('Line 23 ---> Message of State', ctx.state.message);
+});
+
+
+// Body Parser Middleware
+app.use(bodyParser());
+
+
+
+
+app.use(async (ctx, next) => { 
+  console.log('here in next function')
+  ctx.state.message = await message();
+  console.log('message', ctx.state.message);
+  ctx.body = ctx.state.message;
+  next();
+})
+
+const message = async () => {
+  return 'Hello World';
+}
 
 
 // Static middlware
