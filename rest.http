@@ -1,0 +1,19 @@
+# POST http://localhost:3000/api/users
+# Content-Type: application/json
+
+# {
+#   "name": "Mike",
+#   "email": "Mike@email.com"
+# }
+
+PUT http://localhost:3000/api/users/4
+Content-Type: application/json
+
+{
+  "name": "Michael",
+  "email": "Mike@email.com"
+}
+
+
+# DELETE  http://localhost:3000/api/users/3
+
