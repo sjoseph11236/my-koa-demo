@@ -7,21 +7,27 @@ const bodyParser = require('koa-bodyparser');
 const app = new Koa();
 const PORT = 3000; 
 
-// Custom logger middlware
+// Koa-Logger
 app.use(logger());
 
+// Custom logger middlware
 app.use(async (ctx, next)=> {
   let start = new Date();
-  console.log('Going to next function..')
+  console.log('Line 16 ---> Going to next function..')
   await next();
   // next();
-  console.log('continuing on in this function...')
+  console.log('Line 19 ---> continuing on in this function...')
   let end = new Date();
-  console.log("Total is ...", end - start)
-  console.log('Message on state', ctx.state.message);
+  console.log("Line 20 ---> Total is ...", end - start)
+  console.log('Line 21 ---> Message on state', ctx.state.message);
+  console.log('Line 22 ---> body', ctx.body);
+  // Change the message on the response body which is what will be sent out automatically 
+  // as the response since the flow ends here.
+  ctx.body = 'Not Hello world';
 });
 
 app.use(bodyParser());
+
 // Error Middlware
 // app.use(async(ctx, next) => {
 //   try {
@@ -35,11 +41,13 @@ app.use(bodyParser());
 // });
 
 
-
+// Message Middleware
 app.use(async (ctx, next) => { 
-  console.log('here in next function');
+  console.log('Line 43 ---> here in next function');
+  // message function on line 50 returns a promise of the message "Hello World"
   ctx.state.message = await message();
-  console.log('message', ctx.state.message);
+  console.log('Line 45 ---> message', ctx.state.message);
+  // add the message to the response body. 
   ctx.body = ctx.state.message;
 });
 
@@ -51,6 +59,8 @@ app.use(static('./public'));
 
 const apiRouter = require('./api');
 app.use(apiRouter.routes());
+
+
 // const router = new Router();
 // app.use(router.routes())
 // router.get('/home', async(ctx, next) => {
