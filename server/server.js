@@ -1,11 +1,14 @@
 const Koa = require('koa');
+
+// Create app
+const app = new Koa();
+const PORT = 3000; 
+
+
 const logger = require('koa-logger');
 const static = require('koa-static');
 const Router = require('Koa-router');
 const bodyParser = require('koa-bodyparser');
-// Create app
-const app = new Koa();
-const PORT = 3000; 
 
 // Koa-Logger
 app.use(logger());
@@ -15,6 +18,7 @@ app.use(async (ctx, next)=> {
   let start = new Date();
   console.log('Line 16 ---> Going to next function..')
   await next();
+  // ctx.body = 'Not Hello world';
   // next();
   console.log('Line 19 ---> continuing on in this function...')
   let end = new Date();
@@ -24,6 +28,7 @@ app.use(async (ctx, next)=> {
   // Change the message on the response body which is what will be sent out automatically 
   // as the response since the flow ends here.
   ctx.body = 'Not Hello world';
+  console.log('Line 32 ---> body ------->', ctx.body);  
 });
 
 app.use(bodyParser());
@@ -43,10 +48,10 @@ app.use(bodyParser());
 
 // Message Middleware
 app.use(async (ctx, next) => { 
-  console.log('Line 43 ---> here in next function');
+  console.log('Line 46 ---> here in next function');
   // message function on line 50 returns a promise of the message "Hello World"
   ctx.state.message = await message();
-  console.log('Line 45 ---> message', ctx.state.message);
+  console.log('Line 49 ---> message', ctx.state.message);
   // add the message to the response body. 
   ctx.body = ctx.state.message;
 });
